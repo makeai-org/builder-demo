@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Model Builder Demo - MakeAI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" />
+</head>
+<body>
+    <div class="window">
+        <div class="win_head">
+            <div class="esc_win">Esc</div>
+            <div class="head_head">Data Creator Window</div>
+        </div>
+        <div class="del_clear"><i class="fa fa-trash-o"></i></div>
+            <div class="disCan"><canvas width="28" height="28" class="multiCan"></canvas></div>
+            <div class="disCan"><canvas width="28" height="28" class="multiCan"></canvas></div>
+            <div class="disCan"><canvas width="28" height="28" class="multiCan"></canvas></div>
+            <div class="disCan"><canvas width="28" height="28" class="multiCan"></canvas></div>
+            <div class="disCan"><canvas width="28" height="28" class="multiCan"></canvas></div>
+            <div class="disCan"><canvas width="28" height="28" class="multiCan"></canvas></div>
+            <div class="disCan"><canvas width="28" height="28" class="multiCan"></canvas></div>
+            <div class="disCan"><canvas width="28" height="28" class="multiCan"></canvas></div>
+            <div class="disCan"><canvas width="28" height="28" class="multiCan"></canvas></div>
+            <div class="disCan"><canvas width="28" height="28" class="multiCan"></canvas></div>
+            <div class="disCan"><canvas width="28" height="28" class="multiCan"></canvas></div>
+            <div class="disCan"><canvas width="28" height="28" class="multiCan"></canvas></div>
+            <div class="disCan"><canvas width="28" height="28" class="multiCan"></canvas></div>
+            <div class="disCan"><canvas width="28" height="28" class="multiCan"></canvas></div>
+            <div class="disCan"><canvas width="28" height="28" class="multiCan"></canvas></div>
+            <div class="disCan"><canvas width="28" height="28" class="multiCan"></canvas></div>
+        <div class="show_data"><canvas id="myCanvas" class="can_show" height="28" width="28"></canvas></div>
+        <div class="labeler">Label Your Data: <input type="text" maxlength="20" class="Label"></div>
+        <div id="btn" class="add_data">+</div>
+        <div id="btn" class="fwrd_button">&#62;</div>
+        <div id="btn" class="back_button">&#60;</div>
+        <div class="new_rev">Create</div>
+        <div class="labelDis"></div>
+    </div>
+    <div class="warn_screen"><h1 style="font-size: xx-large; margin-right: 5%; margin-left: 5%">For the best experience, try this demo on a computer. <br>Mobile is currently not supported.</h1></div>
+        <button id="smallContinue"><h1>Continue</h1></button>
+    <div class="vis">
+
+    <nav>
+        <a href="https://makeai.org" target="_blank" rel="noopener noreferrer"><img src="{{ url_for('static', filename='logo.png') }}" style="width: 200px; height: auto; padding: 20px;"></a>
+    </nav>
+    <div class="start" id ="id_start">
+        <div class="startText">Layer Blocks</div>
+        <div draggable="true" class="dense" id="block">
+            Dense Layer
+            <div class="dropdown" id="dropdown">| &darr; |</div>
+            <div class="hoverShow" id="hoverShow">Parameters
+                <div class="drop">Layers: <input type="number" onkeydown="return false;" class="textInLayers" value="32" max="128" min="1"></div>
+                <div class="drop">Activation: <input type="text" class="textInActivation" maxlength="5" value="relu"></div>
+            </div>
+        </div>
+        <div draggable="true" class="conv" id="block">
+            Conv Layer
+            <div class="dropdown" id="dropdown2">| &darr; |</div>
+            <div class="hoverShow" id="hoverShow">Parameters
+                <div class="drop">Layers: <input type="number" onkeydown="return false;" class="textInLayers" value="16" max="32" min="1"></div>
+                <div class="drop">Activation: <input type="text" class="textInActivation" maxlength="5" value="relu"></div>
+            </div>
+        </div>
+        <div id="press_submit">Submit</div>
+        <div class="mkData">Make Data</div>
+    </div>
+    <div class="finish" id="id_finish">
+    <div class="fin_heading">Build Space</div>
+    <div class="start_block" draggable="true">
+    <div class="inptext">Input Layers : 0</div>
+    </div>
+    </div>
+    <div class="sidebar">
+        <div class="openClose">
+            <div class="openArrow">&#8250;</div>
+        </div>
+        <div class="training">
+            <u class="stats_title">Training Parameters</u>
+            <br><br>
+            Epochs: <input type="number" class="epochs" min="1" max="5" value="2" onkeydown="return false;">
+            <br>
+            Learning Rate: <input type="text" class="lr" maxlength="6" value="0.01">
+            <br>
+            Loss Function: Coming Soon
+            <br>
+            Save: Coming Soon
+            <br>
+            Use Pre-Made Number Data<input class="AlpLet" type="checkbox" checked="true">
+            <br>
+            Use Your Own Custom Data<input class="Custom" type="checkbox">
+        </div>
+        <div class="stats">
+            <div class="stats_title"><u class="stat_under">Last Training Statistics</u></div>
+            <div class="read_out">
+            <br><br>
+            Test Accuracy: {{ Test_Acc }}<br>
+            Model: {{ model }}<br>
+            Parameters: {{ mod_weight }}<br>
+            Training Time: None
+            <br>
+            </div>
+        </div>
+    </div>
+    <div class="bottomBar">
+        <div class="bottomOpenClose">
+            &dArr;
+        </div>
+        <div class="exp_can"><div class="exp_head">Draw a Number From 0-9:</div>
+    <br>
+    Left Click - Draw
+    <br>
+    Right Click - Erase
+    <br>
+    Touch - Only Draw
+    <br><br>
+    Current Model:
+    <br>
+    Data - <div class="data" style="display:inline"></div>
+    <br>
+    Param - <div class="para" style="display:inline"></div>
+    <br>
+    Time Trained - <div class="tt" style="display:inline"></div>
+    </div>
+        <canvas id="myCanvas" class="botCan" width="28" height="28"></canvas>
+        <div id="erase" class="side_button_can">Erase</div>
+        <div id="pred_num" class="side_button_can">Predict</div>
+        <div id="guess_out" class="side_button_can">None</div>
+        <!--<div class="current_params">Current Params Coming Soon</div>-->
+    </div>
+    <script>let modelKey = "";let keepLabels = [];</script>
+    <!--<div class="redBox"></div>-->
+    <script src="{{ url_for('static', filename='demo.js') }}"></script>
+    <script src="{{ url_for('static', filename='draw.js') }}"></script>
+    </div>
+</body>
+</html>

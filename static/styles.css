@@ -1,0 +1,616 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    /**box-sizing: border-box;**/
+    user-select: none;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #2F3045;
+}
+
+:root {
+    --lighttext: rgb(213, 222, 234);
+    --statstext: #adb6c3;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 10%;
+    background-color: #02005F;
+}
+
+.vis {
+    width: 100vw;
+    height: 100vh;
+}
+
+.warn_screen {
+    width:100%;
+    text-align: center;
+    visibility: hidden;
+    background-color: inherit;
+    position: absolute;
+    color: #b3c5df;
+}
+
+#smallContinue {
+    position: absolute;
+    display: none;
+    user-select: none;
+    width: 50%;
+    height: 20%;
+    background-color: #323d76;
+    border: solid #b3c5df 2px;
+    border-radius: 16px;
+    text-align: center;
+    font-size: large;
+    color:#b3c5df;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.side_button_can {
+    user-select: none;
+    width: 10%;
+    height: 12%;
+    background-color: darkblue;
+    border: solid black 2px;
+    border-radius: 8px;
+    margin-left: 65%;
+    margin-top: 6%;
+    text-align: center;
+    color:var(--lighttext);
+}
+
+.side_button_can:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+#pred_num {
+    margin-top: 2%;
+}
+
+#guess_out {
+    margin-top: 2%;
+    background-color: darkcyan;
+}
+
+#guess_out:hover {
+    cursor:default;
+    opacity: 1;
+}
+
+.current_params {
+    width: 30%;
+    height: 16%;
+    background-color: darkblue;
+    border-radius: 8px;
+    margin-left: 63%;
+    margin-top: -10%;
+    text-align: center;
+    color:var(--lighttext);
+}
+
+.startText {
+    width: 100%;
+    height: 5%;
+    background-color: rgb(26, 67, 79);
+    color: var(--lighttext);
+    font-weight: bold;
+    text-align: center;
+    border-bottom:1px black solid;
+}
+
+.sidebar {
+    visibility: hidden;
+    width: 20%;
+    height: 80%;
+    border:black 1px solid;
+    display: inline;
+    position: absolute;
+    background-color: #1a1b27;
+}
+
+.bottomOpenClose {
+    width: 100%;
+    color:white;
+    height: 12%;
+    border:black 1px solid;
+    margin-top: 0%;
+    position: absolute;
+    background-color: #262738;
+    text-align: center;
+    cursor: pointer;
+}
+
+.bottomBar {
+    visibility: hidden;
+    z-index: 10;
+    position:absolute;
+    width:60%;
+    height:30%;
+    border: black 1px solid;
+    background-color: #1a1b27;
+    /*margin-top: 42%; /*in 42% out 30%*/
+    margin-left: 30%;
+    font-weight: bold;
+}
+
+.sidebar:hover {
+    cursor:default;
+}
+
+.lr {
+    font-size: x-small;
+    width: 20%;
+    height: 5%;
+    border: 2px solid var(--statstext);
+    border-radius: 2px;
+    color: var(--statstext);
+}
+
+.stats_title {
+    position:absolute;
+    background-color: inherit;
+    margin-left:17%;
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.stat_under {
+    background-color: inherit;
+}
+
+.read_out {
+    background-color: inherit;
+}
+
+.epochs {
+    width: 20%;
+    height:5%;
+    text-align: center;
+    border: 2px solid var(--statstext);
+    border-radius: 2px;
+    color: var(--statstext);
+}
+
+.exp_head {
+    background-color: inherit;
+    font-weight: inherit;
+}
+
+.exp_can {
+    font-weight: bold;
+    display: inline;
+    float:left;
+    height: 100%;
+    width: 20%;
+    background-color: inherit;
+    color: var(--lighttext);
+    border: black solid 3px;
+}
+
+.training {
+    z-index: 100;
+    display: inline;
+    width:92%;
+    height: 50%;
+    border-bottom:1px black solid;
+    background-color: inherit;
+    color: var(--statstext);
+    position: relative;
+    float: right;
+    font-size: inherit;
+}
+
+input[type="number"] {
+    font-size: inherit;
+    background-color: inherit;
+}
+
+.stats {
+    width:92%;
+    height: 50%;
+    display: inline;
+    position: relative;
+    float: right;
+    font-size: inherit;
+    background-color: inherit;
+    color: var(--statstext);
+}
+
+.openClose {
+    cursor: pointer;
+    display:inline;
+    float:left;
+    height:100%;
+    width:8%;
+    border:black 0px solid;
+    background-color: #262738;
+}
+
+.openArrow {
+    color:white;
+    background-color: inherit;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+select {
+    width: 20%;
+    background-color: inherit;
+}
+
+.hoverShow {
+    z-index: 1000;
+    position: absolute;
+    visibility: hidden;
+    background-color: inherit;
+    display: inline;
+    float:left;
+    border: black 1px solid;
+}
+
+.drop {
+    visibility: inherit;
+    background-color: inherit;
+    border: inherit;
+    width:125px;
+}
+
+.dropdown {
+    display: inline;
+    background-color: inherit;
+    border: black 2px solid; 
+    position:relative;
+    top:3px;
+    /*width:500%;*/
+}
+
+.dropdown:hover {
+    cursor: pointer;
+}
+
+input[type=text] {
+    text-align: center;
+    background-color: inherit;
+    font-size: inherit;
+}
+
+.textInLayers {
+    width: 30%;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 1px;
+    color: var(--lighttext);
+}
+
+.textInActivation {
+    width: 30%;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 1px;
+    color: var(--lighttext);
+}
+
+.inptext {
+    background-color: inherit;
+    text-align: inherit;
+}
+
+.start_block {
+    height:5%;
+    width:15%;
+    border:black 2px solid;
+    text-align: center;
+    background-color: #323d76;
+    color: var(--lighttext);
+    position: absolute;
+    margin-top:5%;
+    margin-left: 42.5%;
+    z-index: 10;
+}
+
+.dense {
+    margin-left: 15%;
+    border: solid black 2px;
+    border-radius: 8px;
+    cursor:grab;
+    background-color: rgb(70, 14, 14);
+    color: var(--lighttext);
+    text-align: center;
+    z-index: 1000;
+    position:absolute;
+    visibility: hidden;
+}
+
+.conv {
+    margin-left: 15%;
+    padding: 0px;
+    border: solid black 2px;
+    border-radius: 8px;
+    cursor:grab;
+    background-color: rgb(42, 75, 42);
+    color: var(--lighttext);
+    text-align: center;
+    z-index: 10;
+    position:absolute;
+    visibility: hidden;
+}
+
+#block {
+    font-size: smaller;
+}
+
+#clone_ {
+    font-size: smaller;
+}
+
+#clone_:hover {
+    cursor: -moz-grab;
+}
+
+#block:hover {
+    cursor: -moz-grab;
+}
+
+.start {
+    background-color: #48505b;
+    z-index: 1;
+    position: absolute;
+    height:90%;
+    width:15%;
+    border:solid black 2px;
+}
+
+.fin_heading {
+    width: 100%;
+    height: 5%;
+    background-color: #212051;
+    color:var(--lighttext);
+    font-weight: bold;
+    text-align: center;
+    border-bottom:1px black solid;
+}
+
+.finish {
+    background-color: #2F3045;
+    margin-left:15%;
+    position: absolute;
+    height: 90%;
+    width:85%;
+    border:solid black 2px;
+}
+
+#press_submit {
+    user-select: none;
+    position: relative;
+    width: 40%;
+    height: 4%;
+    border: 2px black solid;
+    border-radius: 8px;
+    background-color: var(--lighttext);
+    font-weight: bold;
+    margin-left:30%;
+    text-align: center;
+    visibility: hidden;
+}
+
+#press_submit:hover {
+    cursor:pointer;
+    background-color: darkblue;
+    color: var(--lighttext);
+}
+
+.botCan {
+    display: inline;
+    float:left;
+    background-color: black;
+    border: 2px solid rgb(154, 168, 172);
+    position: absolute;
+    height: 15%;
+    width: 15%;
+}
+
+/** Canvas
+#myCanvas {
+
+}**/
+/*
+.redBox {
+    position: absolute;
+    width:10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 5px;
+    z-index: 9999;
+    border: black 1px solid;
+}
+*/
+
+.mkData {
+    user-select: none;
+    position: relative;
+    width: 40%;
+    height: 4%;
+    border: 2px black solid;
+    border-radius: 8px;
+    background-color:aqua;
+    font-weight: bold;
+    margin-left:30%;
+    text-align: center;
+    visibility: hidden;
+    z-index: 100;
+}
+
+#btn:hover {
+    cursor: pointer;
+    background-color: darkblue;
+    color:white;
+}
+
+.window {
+    position: absolute;
+    visibility: hidden;
+    background-color: grey;
+    z-index:999;
+}
+
+.win_head {
+    user-select: none;
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    background-color:darkblue;
+    font-weight: bold;
+    text-align: center;
+    visibility: inherit;
+    z-index: 100;
+    color:white;
+}
+
+.esc_win {
+    position: absolute;
+    width: 10%;
+    height: 40%;
+    border: 2px black solid;
+    border-radius: 8px;
+    background-color:aqua;
+    font-weight: bold;
+    margin-left:2%;
+    text-align: center;
+    visibility: inherit;
+    z-index: 101;
+    color: black;
+}
+
+.del_clear {
+    position: absolute;
+    width: 10%;
+    height: 6%;
+    border: 2px black solid;
+    border-radius: 8px;
+    background-color:red;
+    font-weight: bold;
+    text-align: center;
+    visibility: inherit;
+    z-index: 101;
+    color: black;
+}
+
+.del_clear:hover {
+    background-color: maroon;
+}
+
+.can_show {
+    position: absolute;
+    margin-top: 10%;
+    margin-left: 20%;
+    width: 60%;
+    height: 60%;
+    background-color: black;
+}
+
+.add_data {
+    position: absolute;
+    width: 10%;
+    height: 6%;
+    border: 2px black solid;
+    border-radius: 8px;
+    background-color:lightgreen;
+    font-weight: bold;
+    text-align: center;
+    visibility: inherit;
+    z-index: 101;
+    color: black;
+}
+
+.new_rev {
+    position: absolute;
+    width: 10%;
+    height: 6%;
+    border: 2px black solid;
+    border-radius: 8px;
+    background-color:whitesmoke;
+    font-weight: bold;
+    text-align: center;
+    visibility: inherit;
+    z-index: 101;
+    color: black;
+}
+
+.multiCan {
+    background-color: black;
+    width: 10%;
+    height: 10%;
+    visibility: hidden;
+    position: absolute;
+    margin-top: 0%;
+    margin-left: 0%;
+    z-index: 200;
+}
+ 
+/*.disCan {
+
+}*/
+
+.add_data:hover {
+    background-color: darkgreen;
+}
+
+.fwrd_button {
+    position: absolute;
+    z-index: 9999;
+    font-weight: bold;
+    border-radius:50%;
+    border: 1px black solid;
+    background-color: lightblue;
+}
+
+.back_button {
+    position: absolute;
+    z-index: 9999;
+    font-weight: bold;
+    border-radius:50%;
+    border: 1px black solid;
+    background-color: lightblue;
+}
+
+.back_button:hover {
+    background-color: white;
+}
+
+.fwrd_button:hover {
+    background-color: white;
+}
+
+.labeler input[type="text"] {
+    position: absolute;
+    z-index: 102;
+    background-color: black;
+    color:white;
+}
+
+.labeler{
+    position: absolute;
+    font-weight: bold;
+}
+
+.labelDis {
+    z-index: 203;
+    width: 200px;
+    height: 30px;
+    color:white;
+    text-align: center;
+    background-color: black;
+    position: absolute;
+}
